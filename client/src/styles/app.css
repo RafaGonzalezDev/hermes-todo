@@ -397,6 +397,9 @@
   letter-spacing: var(--tracking-snug);
   line-height: var(--line-height-snug);
   word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .taskTitle.done {
@@ -411,12 +414,19 @@
   line-height: var(--line-height-normal);
   margin-top: var(--space-1);
   word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .taskDescription.placeholder {
   font-family: var(--font-mono);
   color: var(--text-faint);
   user-select: none;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
 }
 
 .taskMeta {
