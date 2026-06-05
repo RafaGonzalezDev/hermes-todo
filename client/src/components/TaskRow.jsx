@@ -25,9 +25,9 @@ export default function TaskRow({ task, onToggleDone, onStatusChange, onDelete }
 
       <div className="taskBody">
         <div className={`taskTitle ${isDone ? 'done' : ''}`}>{task.title}</div>
-        {task.description && (
-          <p className="taskDescription">{task.description}</p>
-        )}
+        <p className={`taskDescription ${task.description ? '' : 'placeholder'}`}>
+          {task.description || '—'}
+        </p>
         <div className="taskMeta">
           <span className={`badge priority-${task.priority}`}>{task.priority}</span>
           <span className={`badge status-${task.status}`}>{STATUS_LABELS[task.status]}</span>
