@@ -1,0 +1,93 @@
+/* ============================================================
+   DESIGN TOKENS — extracted from personal-portfolio
+   Source: ~/workspace/personal-portfolio/src/index.css
+   Used here for color/typography/spacing tokens only.
+   Layout & composition are free-form (per project spec).
+   ============================================================ */
+
+:root {
+  /* ---- Type: families ---- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---- Type: sizes ---- */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-base: 0.9375rem;
+  --font-size-lg: 1rem;
+  --font-size-xl: 1.125rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.75rem;
+  --font-size-display: clamp(2.5rem, 5.5vw, 4.5rem);
+
+  /* ---- Type: weights ---- */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ---- Type: line height ---- */
+  --line-height-tight: 1.05;
+  --line-height-snug: 1.2;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.75;
+
+  /* ---- Type: tracking ---- */
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.005em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-widest: 0.12em;
+
+  /* ---- Spacing (4pt base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* ---- Radius ---- */
+  --radius-sm: var(--space-1);
+  --radius-md: var(--space-2);
+  --radius-lg: var(--space-3);
+  --radius-pill: 9999px;
+
+  /* ---- Borders ---- */
+  --border-width: 1px;
+  --border-thick-width: 2px;
+  --hairline: 1px solid var(--border);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --pulse-period: 2.4s;
+}
+
+/* ============================================================
+   THEME — DARK EDITORIAL
+   ============================================================ */
+:root {
+  --bg: #0c0c0d;
+  --bg-elevated: #131314;
+  --bg-subtle: #181819;
+  --text: #f2efe8;
+  --text-muted: #9b978c;
+  --text-faint: #57564f;
+  --border: #232220;
+  --border-strong: #34322d;
+  --accent: #c5e063;
+  --accent-soft: rgba(197, 224, 99, 0.14);
+  --accent-fg: #0c0c0d;
+  --pulse: rgba(197, 224, 99, 0.65);
+  --danger: #e06363;
+  --danger-soft: rgba(224, 99, 99, 0.12);
+}
