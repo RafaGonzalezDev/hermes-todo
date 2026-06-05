@@ -2,6 +2,8 @@
 
 A task management application with a dark editorial aesthetic. SQLite-backed REST API (Express) + React 19 frontend (Vite).
 
+![Hermes Todo Preview](./client/public/preview-v1.png)
+
 ## Structure
 
 ```
