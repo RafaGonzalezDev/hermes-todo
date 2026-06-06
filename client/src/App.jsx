@@ -23,12 +23,6 @@ export default function App() {
     setShowForm(false);
   };
 
-  const handleToggleDone = async (task) => {
-    const next = task.status === 'done' ? 'pending' : 'done';
-    await updateTask(task.id, { status: next });
-    await reloadStats();
-  };
-
   const handleStatusChange = async (task, status) => {
     await updateTask(task.id, { status });
     await reloadStats();
@@ -40,10 +34,10 @@ export default function App() {
   };
 
   const filterLabel = {
-    all: 'all tasks',
-    pending: 'pending',
-    in_progress: 'in progress',
-    done: 'done',
+    all: 'All tasks',
+    pending: 'Pending',
+    in_progress: 'In progress',
+    done: 'Done',
   }[filter];
 
   return (
@@ -75,13 +69,13 @@ export default function App() {
               <div className="contentSubtitle">viewing</div>
               <h1 className="contentTitle">{filterLabel}</h1>
             </div>
-            <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-              <button type="button" className="ghostButton" onClick={reload} disabled={loading}>
+            <div className="contentActions">
+              <button type="button" className="ghostButton compactButton" onClick={reload} disabled={loading}>
                 Refresh
               </button>
               <button
                 type="button"
-                className="primaryButton"
+                className="primaryButton compactButton"
                 onClick={() => setShowForm((s) => !s)}
                 aria-expanded={showForm}
               >
@@ -110,7 +104,7 @@ export default function App() {
             </div>
           ) : filteredTasks.length === 0 ? (
             <div className="state">
-              <span>{filter === 'all' ? 'no tasks yet — create one to start' : `no ${filterLabel} tasks`}</span>
+              <span>{filter === 'all' ? 'No tasks yet — create one to start' : `No ${filterLabel.toLowerCase()} tasks`}</span>
             </div>
           ) : (
             <ul className="taskList">
@@ -118,7 +112,6 @@ export default function App() {
                 <TaskRow
                   key={task.id}
                   task={task}
-                  onToggleDone={handleToggleDone}
                   onStatusChange={handleStatusChange}
                   onDelete={handleDelete}
                 />

@@ -1,8 +1,8 @@
 const FILTERS = [
-  { id: 'all', label: 'all tasks' },
-  { id: 'pending', label: 'pending' },
-  { id: 'in_progress', label: 'in progress' },
-  { id: 'done', label: 'done' },
+  { id: 'all', label: 'All tasks' },
+  { id: 'pending', label: 'Pending' },
+  { id: 'in_progress', label: 'In progress' },
+  { id: 'done', label: 'Done' },
 ];
 
 export default function Sidebar({ stats, filter, onFilterChange, tasks }) {
@@ -16,19 +16,19 @@ export default function Sidebar({ stats, filter, onFilterChange, tasks }) {
   return (
     <aside className="sidebar" aria-label="filters and stats">
       <div>
-        <div className="sidebarHeading">overview</div>
+        <div className="sidebarHeading">Overview</div>
         <div className="statList" style={{ marginTop: 'var(--space-3)' }}>
-          <Stat label="total" value={stats.total} />
-          <Stat label="pending" value={stats.pending} />
-          <Stat label="in progress" value={stats.in_progress} accent />
-          <Stat label="done" value={stats.done} />
-          <Stat label="high priority" value={stats.high_priority} />
-          <Stat label="overdue" value={stats.overdue} danger={stats.overdue > 0} />
+          <Stat label="Total" value={stats.total} />
+          <Stat label="Pending" value={stats.pending} />
+          <Stat label="In progress" value={stats.in_progress} accent />
+          <Stat label="Done" value={stats.done} />
+          <Stat label="High priority" value={stats.high_priority} />
+          <Stat label="Overdue" value={stats.overdue} danger={stats.overdue > 0} />
         </div>
       </div>
 
       <div>
-        <div className="sidebarHeading">filter</div>
+        <div className="sidebarHeading">Filter</div>
         <div className="filterGroup" style={{ marginTop: 'var(--space-3)' }}>
           {FILTERS.map((f) => (
             <button
