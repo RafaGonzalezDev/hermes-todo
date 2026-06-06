@@ -1,0 +1,17 @@
+{
+  "name": "hermes-todo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Task management app — orchestrator that runs server (Express+SQLite) and client (Vite+React) together.",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:fallback": "concurrently -k -n server,client -c green,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "install:all": "npm install --build-from-source --foreground-scripts && npm --prefix server install --build-from-source --foreground-scripts && npm --prefix client install",
+    "postinstall": "node scripts/postinstall.mjs",
+    "seed": "node scripts/seed.mjs",
+    "seed:fresh": "node scripts/seed.mjs --wipe"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
