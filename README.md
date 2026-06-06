@@ -2,7 +2,9 @@
 
 A task management application with a dark editorial aesthetic. SQLite-backed REST API (Express) + React 19 frontend (Vite).
 
-![Hermes Todo Preview](./client/public/preview-v1.png)
+> **Experiment note:** This entire application was built and iterated upon as a living experiment using [Hermes Agent](https://hermes-agent.nousresearch.com/). Every feature — from the initial scaffolding to the custom status picker, design token sync, root dev orchestrator, seed scripts, and screenshot automation — was directed and instructed by a human developer, with Hermes Agent acting as the execution layer. The commit history reflects atomic, conventional-commits-style changes produced during this iterative workflow.
+
+![Hermes Todo Preview](./client/public/preview-v2.png)
 
 ## Structure
 
@@ -40,6 +42,17 @@ Colors, typography, spacing and motion extracted from `~/workspace/personal-port
 - **Borders**: 1px hairlines, focus outline 2px lime
 
 ## Setup
+
+```bash
+# Install all dependencies (root, server, client)
+npm install
+
+# Start both backend and frontend simultaneously
+npm run dev          # → backend http://localhost:3001
+                     # → frontend http://localhost:5173
+```
+
+Or run them separately:
 
 ```bash
 # Backend
