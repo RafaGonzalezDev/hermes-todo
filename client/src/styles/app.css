@@ -221,6 +221,12 @@
   flex-wrap: wrap;
 }
 
+.contentActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .contentTitle {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
@@ -257,6 +263,10 @@
 .primaryButton:active { transform: translateY(1px); }
 .primaryButton:disabled { opacity: 0.5; cursor: not-allowed; }
 
+.compactButton {
+  padding-block: var(--space-2);
+}
+
 .ghostButton {
   display: inline-flex;
   align-items: center;
@@ -275,6 +285,11 @@
 }
 
 .ghostButton:hover { background-color: var(--bg-subtle); color: var(--accent); }
+
+.primaryButton.compactButton,
+.ghostButton.compactButton {
+  padding-block: 0.45rem;
+}
 
 /* ---- Form ---- */
 .form {
@@ -354,8 +369,7 @@
 }
 
 .taskRow {
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  display: flex;
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-4) var(--space-4);
@@ -367,30 +381,31 @@
 .taskRow:last-child { border-bottom: var(--hairline); }
 .taskRow:hover { background-color: color-mix(in srgb, var(--bg-subtle) 40%, transparent); }
 
-.checkbox {
-  width: 1.125rem;
-  height: 1.125rem;
-  border: var(--hairline);
-  border-radius: var(--radius-sm);
-  background-color: var(--bg);
+.taskBody {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.taskHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.taskControls {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background-color var(--duration-base) var(--ease), border-color var(--duration-base) var(--ease);
+  gap: var(--space-2);
+  flex: 0 0 auto;
 }
-
-.checkbox:hover { border-color: var(--accent); }
-.checkbox.checked {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-fg);
-}
-
-.taskBody { min-width: 0; }
 
 .taskTitle {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--text);
@@ -424,6 +439,9 @@
 .taskDescription.placeholder {
   font-family: var(--font-mono);
   color: var(--text-faint);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   user-select: none;
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -437,71 +455,215 @@
   margin-top: var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--font-size-xs);
-  text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
   color: var(--text-faint);
 }
 
-.badge {
+.metaTag {
   display: inline-flex;
   align-items: center;
-  padding: 2px var(--space-2);
-  border-radius: var(--radius-pill);
-  border: var(--hairline);
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
 
-.badge.priority-high   { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); }
-.badge.priority-medium { color: var(--text-muted); }
-.badge.priority-low    { color: var(--text-faint); }
+.metaDot {
+  color: var(--text-faint);
+  user-select: none;
+}
 
-.badge.status-pending     { color: var(--text-faint); }
-.badge.status-in_progress { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
-.badge.status-done        { color: var(--text-faint); }
+.metaTag.priority-high   { color: var(--danger); }
+.metaTag.priority-medium { color: var(--text-muted); }
+.metaTag.priority-low    { color: var(--text-faint); }
 
-.badge.due-overdue { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); }
-.badge.due-soon    { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
-.badge.due-future  { color: var(--text-faint); }
+.metaTag.status-pending     { color: var(--text-faint); }
+.metaTag.status-in_progress { color: var(--accent); }
+.metaTag.status-done        { color: var(--text-faint); }
 
-.taskActions {
-  display: flex;
+.metaTag.due-overdue { color: var(--danger); }
+.metaTag.due-soon    { color: var(--accent); }
+.metaTag.due-future  { color: var(--text-faint); }
+
+.statusPicker {
+  position: relative;
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+}
+
+.statusPickerTrigger,
+.statusPickerOption,
+.statusPickerAction {
+  display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  opacity: 0;
-  transition: opacity var(--duration-base) var(--ease);
-}
-
-.taskRow:hover .taskActions,
-.taskRow:focus-within .taskActions { opacity: 1; }
-
-.iconButton {
-  width: var(--size-control-sm);
-  height: var(--size-control-sm);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-sm);
-  color: var(--text-faint);
-  transition: color var(--duration-base) var(--ease), background-color var(--duration-base) var(--ease);
-}
-
-.iconButton:hover { color: var(--text); background-color: var(--bg-subtle); }
-.iconButton.danger:hover { color: var(--danger); }
-
-.statusSelect {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.statusPickerTrigger {
+  min-width: 8.5rem;
+  justify-content: space-between;
   color: var(--text-muted);
-  background-color: transparent;
+  background-color: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
   border: var(--hairline);
+  border-color: color-mix(in srgb, var(--border) 72%, transparent);
+  border-radius: var(--radius-md);
+  padding: 0.32rem var(--space-2) 0.32rem var(--space-3);
+  transition:
+    border-color var(--duration-base) var(--ease),
+    color var(--duration-base) var(--ease),
+    background-color var(--duration-base) var(--ease);
+}
+
+.statusPickerTrigger:hover,
+.statusPickerTrigger[aria-expanded="true"] {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background-color: var(--bg-elevated);
+}
+
+.statusPickerTrigger.status-in_progress {
+  color: var(--accent);
+}
+
+.statusPickerTrigger.status-done {
+  color: var(--text-faint);
+}
+
+.statusPickerDot {
+  width: var(--size-status-dot);
+  height: var(--size-status-dot);
+  flex: 0 0 auto;
   border-radius: var(--radius-pill);
-  padding: 2px var(--space-2);
-  cursor: pointer;
+  background-color: currentColor;
+  opacity: 0.85;
+}
+
+.statusPickerChevron {
+  flex: 0 0 auto;
+  color: currentColor;
+  opacity: 0.65;
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.statusPickerTrigger[aria-expanded="true"] .statusPickerChevron {
+  transform: rotate(180deg);
+}
+
+.statusPickerMenu {
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  top: calc(100% + var(--space-2));
+  min-width: 11rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: var(--hairline);
+  border-color: var(--border-strong);
+  border-radius: var(--radius-md);
+  background-color: color-mix(in srgb, var(--bg-elevated) 96%, black 4%);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.35);
+}
+
+.statusPickerOption,
+.statusPickerAction {
+  width: 100%;
+  justify-content: flex-start;
+  color: var(--text-faint);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  transition:
+    background-color var(--duration-base) var(--ease),
+    color var(--duration-base) var(--ease);
+}
+
+.statusPickerOption:hover,
+.statusPickerOption:focus-visible,
+.statusPickerOption.selected,
+.statusPickerAction:hover,
+.statusPickerAction:focus-visible {
+  color: var(--text);
+  background-color: var(--bg-subtle);
+}
+
+.statusPickerSeparator {
+  height: 1px;
+  margin: var(--space-1) var(--space-2);
+  background-color: color-mix(in srgb, var(--border) 72%, transparent);
+}
+
+.statusPickerAction.danger {
+  color: var(--danger);
+}
+
+.statusPickerAction.danger:hover,
+.statusPickerAction.danger:focus-visible {
+  color: var(--danger);
+  background-color: var(--danger-soft);
+}
+
+.statusDeleteConfirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 0;
+}
+
+.statusDeleteConfirmText {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-wide);
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.statusDeleteConfirmActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.statusDeleteConfirmActions .statusPickerAction {
+  justify-content: center;
+  padding-inline: var(--space-2);
+}
+
+.statusPickerOption.status-in_progress,
+.statusPickerOption.status-in_progress.selected {
+  color: var(--accent);
+}
+
+.statusPickerOption.status-done.selected {
+  color: var(--text-faint);
+}
+
+@media (max-width: 640px) {
+  .taskRow {
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding-inline: 0;
+  }
+
+  .taskHead {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .statusPicker {
+    align-self: flex-start;
+  }
+
+  .taskControls {
+    align-self: flex-start;
+  }
 }
 
 /* ---- Empty / loading ---- */
